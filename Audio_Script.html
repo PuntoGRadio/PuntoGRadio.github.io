@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<div style="display:flex;justify-content:center;align-items:center;">
+    <div style="width:400px;height:300px;">
+        <div data-video="y_nKjbLJDA4" data-autoplay="0" data-loop="1" id="youtube-audio"></div>
+        <div style="clear:both;margin:10px;text-align:center">
+           
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+<script>
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+
+    var ctrlq = document.getElementById("youtube-audio");
+    ctrlq.innerHTML = '<img id="youtube-icon" src=""/><div id="youtube-player"></div>';
+    ctrlq.style.cssText = 'width:150px;margin:2em auto;cursor:pointer;cursor:hand;display:none';
+    ctrlq.onclick = toggleAudio;
+
+    player = new YT.Player('youtube-player', {
+      height: '0',
+      width: '0',
+      videoId: ctrlq.dataset.video,
+      playerVars: {
+        autoplay: ctrlq.dataset.autoplay,
+        loop: ctrlq.dataset.loop,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange 
+      } 
+    });
+  } 
+
+  function togglePlayButton(play) {    
+    document.getElementById("youtube-icon").src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
+  }
+
+  function toggleAudio() {
+    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+      player.pauseVideo(); 
+      togglePlayButton(false);
+    } else {
+      player.playVideo(); 
+      togglePlayButton(true);
+    } 
+  } 
+
+  function onPlayerReady(event) {
+    player.setPlaybackQuality("small");
+    document.getElementById("youtube-audio").style.display = "block";
+    togglePlayButton(player.getPlayerState() !== 5);
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === 0) {
+      togglePlayButton(false); 
+    }
+  }
+
+</script>
+
+<script src="https://static.jsbin.com/js/render/edit.js?4.1.7"></script>
+<script>jsbinShowEdit && jsbinShowEdit({"static":"https://static.jsbin.com","root":"https://jsbin.com"});</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-1656750-34', 'auto');
+ga('require', 'linkid', 'linkid.js');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+</script>
