@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Punto G Radio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- One -->
+					<section class="banner style3 orient-center content-align-center image-position-center fullscreen onload-image-fade-in onload-content-fade-right">
+						<div class="content">
+							<header><h2>Viajando voy</h2>
+							<p>De Soria a Chiapas</p></header>
+							<p class="major"> Nos encontramos con Bea Roldan quien ejercio de observadora de derechos humanos en Chiapas, Mexico. Aprovechamos para presentar el espiritu del programa y nos desplazamos para todo esto a Soria,en particular a Cuevas de Soria donde se ubican los restos de la villa romana de La Dehesa.  </p>
+							<ul class="actions vertical">
+							<li><iframe width="361" height="50" src="https://www.youtube.com/embed/42CV4HFI66E?&autoplay=0&showinfo=0&modestbranding=1&controls=2&autohide=0&fs=0&rel=0" frameborder="1"></iframe>
+							    </li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/viajando_voy_1.jpg" alt="" />
+						</div>
+					</section>
+				<!-- Six -->
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<h2>Acceso a los programas</h2>
+							<p>Cuidando y mimando tus oidos....</p>
+							<div class="items style1 medium onscroll-fade-in">
+								<section>
+									<a href="de_huerta_en_huerta.html"><span class="icon style2 major fa-tint"></span></a>
+									<h3>De huerta en huerta</h3>
+									<p>Al día con la agricultura.</p>
+								</section>
+								<section>
+									<a href="pueblos_vivos.html"><span class="icon style2 major fa-tree"></span></a>
+									<h3>Pueblos vivos</h3>
+									<p>Acércate a la realidad de los pueblos desde una perspectiva crítica.</p>
+								</section>
+								<section>
+									<a href="viajando_voy.html"><span class="icon style2 major fa-paper-plane"></span></a>
+									<h3>Viajando voy</h3>
+									<p>Camina junto a aquellos que llevan decenas haciéndolo y escucha qué tienen que decir.</p>
+								</section>
+							</div>
+						</div>
+					</section>
+				<!-- Seven -->
+					<section class="wrapper style1 align-center">
+						<div class="inner medium">
+							<h2>Contacta</h2>
+							<form method="post" action="#">
+								<div class="field half first">
+									<label for="name">Nombre</label>
+									<input type="text" name="name" id="name" value="" />
+								</div>
+								<div class="field half">
+									<label for="email">Email</label>
+									<input type="email" name="email" id="email" value="" />
+								</div>
+								<div class="field">
+									<label for="message">Mensaje</label>
+									<textarea name="message" id="message" rows="6"></textarea>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" name="submit" id="submit" value="Enviar" /></li>
+								</ul>
+							</form>
+
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+							</ul>
+							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a> by Pela</p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			
+
+	</body>
+</html>
+<!--
+<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+<script>
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+
+    var ctrlq = document.getElementById("youtube-audio");
+    ctrlq.innerHTML = '<img id="youtube-icon" src=""/><div id="youtube-player"></div>';
+    ctrlq.style.cssText = 'width:150px;margin:2em auto;cursor:pointer;cursor:hand;display:none';
+    ctrlq.onclick = toggleAudio;
+
+    player = new YT.Player('youtube-player', {
+      height: '0',
+      width: '0',
+      videoId: ctrlq.dataset.video,
+      playerVars: {
+        autoplay: ctrlq.dataset.autoplay,
+        loop: ctrlq.dataset.loop,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange 
+      } 
+    });
+  } 
+
+  function togglePlayButton(play) {    
+    document.getElementById("youtube-icon").src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
+  }
+
+  function toggleAudio() {
+    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+      player.pauseVideo(); 
+      togglePlayButton(false);
+    } else {
+      player.playVideo(); 
+      togglePlayButton(true);
+    } 
+  } 
+
+  function onPlayerReady(event) {
+    player.setPlaybackQuality("small");
+    document.getElementById("youtube-audio").style.display = "block";
+    togglePlayButton(player.getPlayerState() !== 5);
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === 0) {
+      togglePlayButton(false); 
+    }
+  }
+
+</script>
+			Scripts -->
