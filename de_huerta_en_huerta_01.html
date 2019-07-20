@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	</head>
 	<body>
 
@@ -23,16 +24,27 @@
 							<p>La Olmeda de Jadraque</p></header>
 							<p class="major">Del ajenjo al perejil silvestre a lomos de una alcachofa.</p>
 							<ul class="actions vertical">
-								<li><iframe width="361" height="50" src="https://www.youtube.com/embed/42CV4HFI66E?&autoplay=0&showinfo=0&modestbranding=1&controls=2&autohide=0&fs=0&rel=0" frameborder="1"></iframe>
-							    </li>
+								<!--<li><iframe width="361" height="50" src="https://www.youtube.com/embed/42CV4HFI66E?&autoplay=0&showinfo=0&modestbranding=1&controls=2&autohide=0&fs=0&rel=0" frameborder="1"></iframe>
+							    </li>-->	
 							<!-- <audio controls>
    								   <source src="https://cdn-02.anonfile.com/73e1ac09n4/8fa51aab-1563451290/viajando+voy+01.mp3" type="audio/mpeg">
 								   ¡Wups! Tu navegador no te permite oir el podcast.
-					        </audio>	-->					
+					        </audio>	-->		
+							   <li>
+							     <!-- Reproductor JS con API Youtube -->
+							     <div style="width:0px;height:0px;" id="video-placeholder"></div>
+								 <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
+								 <input type="range" id="progress-bar" value="0">
+								 <i id="play" class="material-icons">play_arrow</i>
+								 <i id="pause" class="material-icons">pause</i>
+								 <i id="mute-toggle" class="material-icons">volume_up</i>
+								 <!--<input id="volume-input" type="number" max="100" min="0">-->
+							   </li>			
 							</ul>
 							
 						</div>
-						<div class="image">
+						
+							<div class="image">
 							<img src="images/de_huerta_en_huerta.jpg" alt="" />
 						</div>
 					</section>
@@ -108,62 +120,115 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://www.youtube.com/iframe_api"></script>
 			
 
 	</body>
 </html>
-<!--
-<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+<!-- YOUTUBE JS CONTROL -->
+
+
+
+
+
+
 <script>
 
-  var player;
-  function onYouTubeIframeAPIReady() {
+var player;
 
-    var ctrlq = document.getElementById("youtube-audio");
-    ctrlq.innerHTML = '<img id="youtube-icon" src=""/><div id="youtube-player"></div>';
-    ctrlq.style.cssText = 'width:150px;margin:2em auto;cursor:pointer;cursor:hand;display:none';
-    ctrlq.onclick = toggleAudio;
-
-    player = new YT.Player('youtube-player', {
-      height: '0',
-      width: '0',
-      videoId: ctrlq.dataset.video,
-      playerVars: {
-        autoplay: ctrlq.dataset.autoplay,
-        loop: ctrlq.dataset.loop,
-      },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange 
-      } 
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('video-placeholder', {
+        width: 600,
+        height: 400,
+        videoId: '42CV4HFI66E',
+        playerVars: {
+            color: 'white',
+            playlist: 'taJ60kskkns,FG0fTKAqZ5g'
+        },
+        events: {
+            onReady: initialize
+        }
     });
-  } 
+}
 
-  function togglePlayButton(play) {    
-    document.getElementById("youtube-icon").src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
-  }
+function initialize(){
+    // Update the controls on load
+    updateTimerDisplay();
+    updateProgressBar();
 
-  function toggleAudio() {
-    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
-      player.pauseVideo(); 
-      togglePlayButton(false);
-    } else {
-      player.playVideo(); 
-      togglePlayButton(true);
-    } 
-  } 
+    // Clear any old interval.
+    clearInterval(time_update_interval);
 
-  function onPlayerReady(event) {
-    player.setPlaybackQuality("small");
-    document.getElementById("youtube-audio").style.display = "block";
-    togglePlayButton(player.getPlayerState() !== 5);
-  }
+    // Start interval to update elapsed time display and
+    // the elapsed part of the progress bar every second.
+    time_update_interval = setInterval(function () {
+        updateTimerDisplay();
+        updateProgressBar();
+    }, 500)
 
-  function onPlayerStateChange(event) {
-    if (event.data === 0) {
-      togglePlayButton(false); 
+}
+
+function updateTimerDisplay(){
+    // Update current time text display.
+    $('#current-time').text(formatTime( player.getCurrentTime() ));
+    $('#duration').text(formatTime( player.getDuration() ));
+}
+
+function formatTime(time){
+    time = Math.round(time);
+
+    var minutes = Math.floor(time / 60),
+    seconds = time - minutes * 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    return minutes + ":" + seconds;
+}
+
+$('#progress-bar').on('mouseup touchend', function (e) {
+
+    // Calculate the new time for the video.
+    // new time in seconds = total duration in seconds * ( value of range input / 100 )
+    var newTime = player.getDuration() * (e.target.value / 100);
+
+    // Skip video to new time.
+    player.seekTo(newTime);
+
+});
+
+// This function is called by initialize()
+function updateProgressBar(){
+    // Update the value of our progress bar accordingly.
+    $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
+}
+
+$('#play').on('click', function () {
+    player.playVideo();
+});
+
+$('#pause').on('click', function () {
+    player.pauseVideo();
+});
+
+$('#mute-toggle').on('click', function() {
+    var mute_toggle = $(this);
+
+    if(player.isMuted()){
+        player.unMute();
+        mute_toggle.text('volume_up');
     }
-  }
+    else{
+        player.mute();
+        mute_toggle.text('volume_off');
+    }
+});
+
+$('#volume-input').on('change', function () {
+    player.setVolume($(this).val());
+});
+
+
 
 </script>
--->
+
+
