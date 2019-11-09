@@ -19,66 +19,18 @@
 				<!-- One -->
 					<section class="banner style3 orient-center content-align-center image-position-center fullscreen onload-image-fade-in onload-content-fade-right">
 						<div class="content">
-							<h1>Pueblos vivos</h1>
-							<p class="major">   El programa Pueblos Vivos pretende aproximarse a la realidad de los pueblos desde una perspectiva crítica y a los futuros posibles desde el optimismo y el afán de transformación emancipadora. Por medio de una entrevista en cada programa exploraremos los problemas actuales del medio rural, centrándonos en la Sierra Norte de Guadalajara. Pero con la mirada también puesta en este planeta que habitamos.</p>
-							<ul class="actions vertical">
-								<li><a href="#uno" class="button big wide smooth-scroll-middle" >Escúchanos</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/pueblos_vivos.jpg" alt="" />
-						</div>
-					</section>
-					<!--3 PV-3 -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
-						<div class="content">
 							<header><h2>Pueblos vivos</h2>
 							<p>La Huerce, un concejo (muy) abierto</p></header>
-							<a id="uno"></a>
-							<p>Entrevistamos al alcalde de La Huerce, uno de los pocos pueblos en Guadalajara que mantienen la figura jurídica del Concejo Abierto.</p>
+							<p class="major">Entrevistamos al alcalde de La Huerce, uno de los pocos pueblos en Guadalajara que mantienen la figura jurídica del Concejo Abierto.</br> Nos explicará el funcionamiento del Concejo, hablaremos de los problemas que se presentan en la comarca y de las imaginativas soluciones que se pueden poner encima de la mesa para tener unos pueblos cada vez más vivos.</p>
 							<ul class="actions vertical">
-								<li><a style="margin-left:50px;" href="pueblos_vivos_03.html" class="button big wide smooth-scroll-middle">Escuchar</a>
-								<a style="margin-left:50px;" href="https://anonfile.com/X1I8s6Abn9/Pueblos_Vivos_03_-_La_Huerce_mp3" class="button big wide smooth-scroll-middle">Descargar</a></li>
+								<li><iframe width="361" height="120" src="https://www.youtube.com/embed/B38g674_Nt4?autoplay=0&showinfo=0&modestbranding=1&controls=1&autohide=0&fs=0&rel=0" frameborder="0"></iframe>
+							    </li>
 							</ul>
 						</div>
 						<div class="image">
 							<img src="images/pueblos_vivos_3.jpg" alt="" />
 						</div>
 					</section>
-					<!-- 2 -->
-					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in" id="first">
-						<div class="content">
-							<header><h2>Pueblos vivos</h2>
-							<p>Albendiego, un pueblo en movimiento</p></header>
-							<a id="uno"></a>
-							<p>En este programa entrevistamos al nuevo equipo municipal de Albendiego. Nos explicarán los proyectos y las iniciativas con las que pretenden mantener y ampliar la vida de este peculiar pueblo. </p>
-							<ul class="actions vertical">
-								<li><a style="margin-left:50px;" href="pueblos_vivos_02.html" class="button big wide smooth-scroll-middle">Escuchar</a>
-								<a style="margin-left:50px;" href="https://anonfile.com/F6gcac08n7/pueblos_vivos_01_mp3" class="button big wide smooth-scroll-middle">Descargar</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/pueblos_vivos_2.jpg" alt="" />
-						</div>
-					</section>
-				<!-- 1 -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
-						<div class="content">
-							<header><h2>Pueblos vivos</h2>
-							<p>Jerónimo Lorente, una vida en lucha</p></header>
-							<a id="uno"></a>
-							<p>Entrevista a Jerónimo Lorente, activista con muchos años de lucha a sus espaldas. Además comentaremos el caso de Fraguas.  </p>
-							<ul class="actions vertical">
-								<li><a style="margin-left:50px;" href="pueblos_vivos_01.html" class="button big wide smooth-scroll-middle">Escuchar</a>
-								<a style="margin-left:50px;" href="https://anonfile.com/F6gcac08n7/pueblos_vivos_01_mp3" class="button big wide smooth-scroll-middle">Descargar</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/pueblos_vivos.jpg" alt="" />
-						</div>
-					</section>
-
-				
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
@@ -161,3 +113,58 @@
 
 	</body>
 </html>
+<!-- 
+<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+<script>
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+
+    var ctrlq = document.getElementById("youtube-audio");
+    ctrlq.innerHTML = '<img id="youtube-icon" src=""/><div id="youtube-player"></div>';
+    ctrlq.style.cssText = 'width:150px;margin:2em auto;cursor:pointer;cursor:hand;display:none';
+    ctrlq.onclick = toggleAudio;
+
+    player = new YT.Player('youtube-player', {
+      height: '0',
+      width: '0',
+      videoId: ctrlq.dataset.video,
+      playerVars: {
+        autoplay: ctrlq.dataset.autoplay,
+        loop: ctrlq.dataset.loop,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange 
+      } 
+    });
+  } 
+
+  function togglePlayButton(play) {    
+    document.getElementById("youtube-icon").src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
+  }
+
+  function toggleAudio() {
+    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+      player.pauseVideo(); 
+      togglePlayButton(false);
+    } else {
+      player.playVideo(); 
+      togglePlayButton(true);
+    } 
+  } 
+
+  function onPlayerReady(event) {
+    player.setPlaybackQuality("small");
+    document.getElementById("youtube-audio").style.display = "block";
+    togglePlayButton(player.getPlayerState() !== 5);
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === 0) {
+      togglePlayButton(false); 
+    }
+  }
+
+</script>
+Scripts -->
